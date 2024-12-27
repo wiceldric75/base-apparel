@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Frontend Mentor | Base Apparel coming soon page</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body>
+    <main>
+      <div class="mobile-content-container">
+        <img src="images/logo.svg" alt="company logo" class="company-logo" />
+        <img
+          src="images/hero-mobile.jpg"
+          alt="hero image"
+          class="hero-mobile"
+        />
+        <section class="content">
+          <h1>WE'RE</h1>
+          <h2>COMING SOON</h2>
+          <p>
+            Hello fellow shoppers! We're currently building our new fashion
+            store. Add your email below to stay up-to-date with announcements
+            and our launch deals.
+          </p>
+          <form class="email-form">
+            <div class="input-wrapper">
+              <input
+                type="email"
+                placeholder="Email Address"
+                class="email-input"
+                required
+              />
+              <img
+                src="images/icon-error.svg"
+                alt="error exclamation"
+                class="error-exclamation"
+              />
+              <button type="submit" class="submit-button">
+                <img
+                src="images/icon-arrow-mobile.svg"
+                alt="Submit"
+                class="arrow-image-mobile"
+              />
+                <img
+                  src="images/icon-arrow.svg"
+                  alt="Submit"
+                  class="arrow-image"
+                />
+              </button>
+            </div>
+          </form>
+          <span>Please provide a valid email</span>
+        </section>
+      </div>
+      <div class="desktop-bg-container">
+        <img src="images/hero-desktop.jpg" alt="desktop hero" class="desktop-hero" />
+      </div>
+    </main>
+  </body>
+</html>
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+  const emailInput = document.querySelector(".email-input");
+  const submitButton = document.querySelector(".submit-button");
+  const errorExclamation = document.querySelector(".error-exclamation");
+  const errorMessage = document.querySelector("span");
+  const arrowImage = document.querySelector(".arrow-image");
+
+  const validateEmail = (email) => {
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  submitButton.addEventListener("mousedown", () => {
+    // Change the arrow icon when the button is pressed
+    arrowImage.src = "images/icon-arrow-active.svg";
+  });
+
+  submitButton.addEventListener("mouseup", () => {
+    // Change back to the original arrow icon when the button is released
+    arrowImage.src = "images/icon-arrow.svg";
+  });
+
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const emailValue = emailInput.value.trim();
+
+    if (validateEmail(emailValue)) {
+      // If the email is valid
+      emailInput.value = ""; // Clear the input field
+      emailInput.placeholder = "Email Address"; // Reset the placeholder
+      errorExclamation.style.display = "none"; // Hide the exclamation mark
+      errorMessage.style.display = "none"; // Hide the error message
+      emailInput.style.border = "1px solid #ce9898"; // Reset the border color
+    } else {
+      // If the email is invalid
+      errorExclamation.style.display = "block"; // Show the exclamation mark
+      errorMessage.style.display = "block"; // Show the error message
+      emailInput.style.border = "2px solid #F96464"; // Change border color
+    }
+  });
+});
+
+
+</script>
